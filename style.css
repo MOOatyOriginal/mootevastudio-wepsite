@@ -1,0 +1,693 @@
+﻿@font-face {
+    font-family: "Simply Olive";
+    src: url("./assets/fonts/Simply Olive DEMO.ttf") format("truetype");
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+.experience {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    background: #000;
+}
+
+/* Hero Message */
+.hero-message {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90vw, 850px);
+    text-align: center;
+    color: #fff;
+    z-index: 0;
+}
+
+.title-hi {
+    font-family: "Simply Olive", cursive;
+    font-size: clamp(48px, 5vw, 60px);
+    font-weight: normal;
+    letter-spacing: 5px;
+    line-height: 1;
+    white-space: nowrap;
+    transform: translateY(18px) rotate(-3deg);
+}
+
+.hi-word {
+    display: inline-block;
+    opacity: 0;
+}
+
+.title-hi.is-visible .hi-word {
+    animation: hi-fade-in .42s ease-out forwards;
+}
+
+@keyframes hi-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hi-dot {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-35px);
+    margin-left: -2px;
+    vertical-align: baseline;
+}
+
+.title-hi.dots-playing .hi-dot:nth-child(2) {
+    animation: dot-fall .42s cubic-bezier(.22,.75,.25,1) forwards;
+}
+
+.title-hi.dots-playing .hi-dot:nth-child(3) {
+    animation: dot-fall .42s cubic-bezier(.22,.75,.25,1) .13s forwards;
+}
+
+@keyframes dot-fall {
+    0% { opacity: 0; transform: translateY(-35px); }
+    70% { opacity: 1; transform: translateY(3px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.title-high-five {
+    margin-top: 2px;
+    font-family: "Simply Olive", cursive;
+    font-size: clamp(52px, 6vw, 70px);
+    font-weight: normal;
+    letter-spacing: 8px;
+    line-height: 1.15;
+    white-space: nowrap;
+    transform: rotate(-2deg);
+    visibility: hidden;
+}
+
+.title-high-five.is-typing {
+    visibility: visible;
+}
+
+.title-high-five .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(5px);
+    animation: letter-appear .22s ease-out forwards;
+}
+
+.title-high-five .letter.space {
+    width: .28em;
+}
+
+@keyframes letter-appear {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOOteva Hand */
+.mooteva-hand {
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    height: 77.7svh;
+    width: auto;
+    max-width: 90vw;
+    object-fit: contain;
+    object-position: center bottom;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: 50% 100%;
+    z-index: 1;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.mooteva-hand.is-entering {
+    visibility: visible;
+    animation: hand-enter .82s cubic-bezier(.2,.8,.25,1) forwards;
+}
+
+@keyframes hand-enter {
+    from { opacity: 1; transform: translate(-50%, 105%); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.mooteva-hand.is-visible,
+.mooteva-hand.is-waving,
+.mooteva-hand.is-ready,
+.mooteva-hand.is-hovering {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mooteva-hand.is-waving {
+    animation: hand-wave .92s cubic-bezier(.4,0,.2,1) both;
+}
+
+@keyframes hand-wave {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    22% { transform: translateX(-50%) rotate(-3deg); }
+    46% { transform: translateX(-50%) rotate(2.5deg); }
+    70% { transform: translateX(-50%) rotate(-1.2deg); }
+    100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+.mooteva-hand.is-ready {
+    cursor: pointer;
+}
+
+.mooteva-hand.is-hovering {
+    animation: hand-hover .38s ease-in-out;
+}
+
+@keyframes hand-hover {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    35% { transform: translateX(-50%) rotate(-1.2deg); }
+    70% { transform: translateX(-50%) rotate(1.2deg); }
+}
+
+/* High Five Impact */
+.mooteva-hand.is-impacting {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+    transform-origin: 51% 44% !important;
+    animation: high-five-motion .95s cubic-bezier(.22,.8,.2,1) forwards !important;
+    filter: none !important;
+}
+
+@keyframes high-five-motion {
+    0% {
+        transform: translateX(-50%) scale(1);
+        filter: none;
+    }
+
+    38% {
+        transform: translate(-50%, -5vh) scale(4.8);
+        filter: none;
+    }
+
+    46% {
+        transform: translate(-50%, -5vh) scale(4.8);
+        filter: none;
+    }
+
+    100% {
+        transform: translateX(-50%) scale(1);
+        filter: none;
+    }
+}
+
+/* Hand Exit */
+.mooteva-hand.is-exiting {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+    animation: hand-exit .82s cubic-bezier(.75,0,.8,.2) forwards !important;
+}
+
+@keyframes hand-exit {
+    from {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-50%, 105%);
+        opacity: 1;
+    }
+}
+
+.mooteva-hand.is-gone {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Elevator Journey */
+.experience.elevator-sequence .hero-message {
+    animation: elevator-journey 4.7s linear forwards;
+    will-change: top, transform;
+}
+
+@keyframes elevator-journey {
+    0% {
+        top: 5%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.2,.8,.25,1);
+    }
+
+    47% {
+        top: 62%;
+        transform: translateX(-50%);
+    }
+
+    55% {
+        top: 62%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.6,0,.9,.85);
+    }
+
+    100% {
+        top: 62%;
+        transform: translate(-50%, -150vh);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .hero-message {
+        top: 7%;
+        width: 96vw;
+    }
+
+    .title-hi {
+        font-size: 48px;
+        letter-spacing: 4px;
+        transform: translateY(14px) rotate(-3deg);
+    }
+
+    .title-high-five {
+        font-size: 54px;
+        letter-spacing: 4px;
+    }
+
+    .mooteva-hand {
+        height: 62.5svh;
+        max-width: 94vw;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .title-hi.is-visible .hi-word,
+    .title-hi.dots-playing .hi-dot,
+    .mooteva-hand.is-entering,
+    .mooteva-hand.is-waving,
+    .title-high-five .letter {
+        animation-duration: .01ms !important;
+        animation-delay: 0ms !important;
+    }
+
+    .mooteva-hand.is-impacting {
+        animation-duration: .01ms !important;
+    }
+}
+
+/* MOOteva - Cinematic Fall Scene 01 */
+
+.fall-sequence {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    perspective: 1000px;
+    background: transparent;
+}
+
+.experience.fall-active .fall-sequence {
+    opacity: 1;
+    visibility: visible;
+}
+
+.fall-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    will-change: transform, opacity, filter;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.fall-item.text-item {
+    font-family: "Simply Olive", cursive;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.fall-item.number-item {
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.fall-item.symbol-item {
+    font-family: Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.fall-item.shape-item {
+    border: 1px solid currentColor;
+}
+
+.fall-item.shape-circle {
+    border-radius: 50%;
+}
+
+.fall-item.shape-square {
+    border-radius: 2px;
+}
+
+.fall-item.shape-ring {
+    border-radius: 50%;
+    background: transparent !important;
+}
+
+.fall-item.icon-item {
+    font-family: Arial, sans-serif;
+    line-height: 1;
+}
+
+.fall-sequence .light-pass {
+    position: absolute;
+    width: 45vw;
+    height: 2px;
+    top: 50%;
+    left: -60vw;
+    opacity: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.65),
+        rgba(255,255,255,.08),
+        transparent
+    );
+    filter: blur(5px);
+    transform: rotate(-18deg);
+    will-change: transform, opacity;
+}
+
+.fall-sequence .light-pass.is-active {
+    animation: fall-light-pass .65s ease-out forwards;
+}
+
+@keyframes fall-light-pass {
+    0% {
+        opacity: 0;
+        transform: translate3d(-20vw, -10vh, 0) rotate(-18deg);
+    }
+
+    25% {
+        opacity: .7;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate3d(180vw, 35vh, 0) rotate(-18deg);
+    }
+}
+
+.experience.fall-impact .fall-sequence {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fall-sequence,
+    .fall-item,
+    .fall-sequence .light-pass {
+        animation: none !important;
+    }
+}
+
+/* MOOteva refinement - middle fall lanes and sling release */
+
+.fall-item {
+    transform-origin: center center;
+    rotate: none;
+}
+
+.fall-item.text-item,
+.fall-item.number-item,
+.fall-item.symbol-item,
+.fall-item.shape-item {
+    transform-style: flat;
+}
+
+.experience.elevator-sequence .hero-message {
+    animation: elevator-journey 1.35s cubic-bezier(.22,.8,.2,1) forwards;
+    will-change: top, transform;
+}
+
+@keyframes elevator-journey {
+    0% {
+        top: 62%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.4,0,.8,.2);
+    }
+
+    16% {
+        top: 73%;
+        transform: translateX(-50%);
+    }
+
+    23% {
+        top: 70%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.12,.8,.18,1);
+    }
+
+    100% {
+        top: -150vh;
+        transform: translateX(-50%);
+    }
+}
+
+.experience.elevator-sequence .hi-dot {
+    animation: sling-dot-lag 1.35s cubic-bezier(.12,.8,.18,1) .12s both;
+}
+
+@keyframes sling-dot-lag {
+    0% {
+        transform: translateY(0);
+    }
+
+    16% {
+        transform: translateY(38px);
+    }
+
+    30% {
+        transform: translateY(42px);
+    }
+
+    100% {
+        transform: translateY(-25px);
+    }
+}
+
+/* MOOteva - Original Pull Motion, Slightly Faster */
+
+.experience.elevator-sequence .hero-message {
+    animation: elevator-journey 4.4s linear forwards;
+    will-change: top, transform;
+}
+
+@keyframes elevator-journey {
+    0% {
+        top: 5%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.2,.8,.25,1);
+    }
+
+    47% {
+        top: 62%;
+        transform: translateX(-50%);
+    }
+
+    55% {
+        top: 62%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.6,0,.9,.85);
+    }
+
+    100% {
+        top: 62%;
+        transform: translate(-50%, -150vh);
+    }
+}
+
+/* MOOteva - Original Pull Motion, Slightly Faster */
+
+.experience.elevator-sequence .hero-message {
+    animation: elevator-journey 4.4s linear forwards;
+    will-change: top, transform;
+}
+
+@keyframes elevator-journey {
+    0% {
+        top: 5%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.2,.8,.25,1);
+    }
+
+    47% {
+        top: 62%;
+        transform: translateX(-50%);
+    }
+
+    55% {
+        top: 62%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.6,0,.9,.85);
+    }
+
+    100% {
+        top: 62%;
+        transform: translate(-50%, -150vh);
+    }
+}
+
+/* MOOteva - Final Sling Motion Correction */
+
+.experience.elevator-sequence .hero-message {
+    animation: elevator-journey 1.28s cubic-bezier(.22,.8,.2,1) forwards !important;
+    will-change: top, transform;
+}
+
+@keyframes elevator-journey {
+    0% {
+        top: 62%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.4,0,.8,.2);
+    }
+
+    16% {
+        top: 73%;
+        transform: translateX(-50%);
+    }
+
+    23% {
+        top: 70%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.12,.8,.18,1);
+    }
+
+    100% {
+        top: -150vh;
+        transform: translateX(-50%);
+    }
+}
+
+.experience.elevator-sequence .hi-dot {
+    animation: sling-dot-lag 1.28s cubic-bezier(.12,.8,.18,1) .12s both !important;
+}
+
+@keyframes sling-dot-lag {
+    0% {
+        transform: translateY(0);
+    }
+
+    16% {
+        transform: translateY(38px);
+    }
+
+    23% {
+        transform: translateY(42px);
+    }
+
+    100% {
+        transform: translateY(-25px);
+    }
+}
+
+/* MOOteva - Slow Pull / Approved Release Speed */
+
+.experience.elevator-sequence .hero-message {
+    animation: elevator-journey 2.18s linear forwards !important;
+    will-change: top, transform;
+}
+
+@keyframes elevator-journey {
+    0% {
+        top: 62%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.4,0,.8,.2);
+    }
+
+    41.28% {
+        top: 73%;
+        transform: translateX(-50%);
+    }
+
+    42% {
+        top: 73%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.12,.8,.18,1);
+    }
+
+    100% {
+        top: -150vh;
+        transform: translateX(-50%);
+    }
+}
+
+.experience.elevator-sequence .hi-dot {
+    animation: sling-dot-lag 1.28s cubic-bezier(.12,.8,.18,1) .9s both !important;
+}
+
+@keyframes sling-dot-lag {
+    0% {
+        transform: translateY(0);
+    }
+
+    15% {
+        transform: translateY(38px);
+    }
+
+    22% {
+        transform: translateY(42px);
+    }
+
+    100% {
+        transform: translateY(-25px);
+    }
+}
+
+/* MOOteva - Continuous Pull and Approved Release Speed */
+.experience.elevator-sequence .hero-message {
+    animation: elevator-journey 3.348s linear forwards !important;
+    will-change: top, transform;
+}
+
+@keyframes elevator-journey {
+    0% {
+        top: 5%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.2,.8,.25,1);
+    }
+
+    61.77% {
+        top: 73%;
+        transform: translateX(-50%);
+        animation-timing-function: cubic-bezier(.12,.8,.18,1);
+    }
+
+    100% {
+        top: -150vh;
+        transform: translateX(-50%);
+    }
+}
